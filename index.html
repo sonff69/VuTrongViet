@@ -34,7 +34,7 @@
 
         /* Lớp phủ nền bảo vệ tương phản, giữ nguyên màu gốc của back.jpg */
         .spider-overlay {
-            background: radial-gradient(circle at 50% 50%, rgba(9, 6, 21, 0.76) 0%, rgba(4, 2, 9, 0.95) 100%);
+            background: radial-gradient(circle at 50% 50%, rgba(9, 6, 21, 0.75) 0%, rgba(4, 2, 9, 0.94) 100%);
         }
 
         /* Hiệu ứng kính mờ */
@@ -105,7 +105,7 @@
             75% { text-shadow: -2px -1.5px 0 #ef4444, 2px 1.5px 0 #06b6d4; }
         }
         .text-glitch {
-            animation: text-glitch-anim 0.6s infinite steps(2);
+            animation: text-glitch-anim 0.7s infinite steps(2);
         }
 
         /* Quét sóng dọc màn hình */
@@ -286,13 +286,12 @@
         </section>
 
         <!-- Section: Mục tiêu Portfolio -->
-        <section id="objectives" class="py-12 space-y-8 relative">
-            <!-- Floating SFX "POW!" -->
-            <div class="absolute right-12 top-0 comic-sfx px-3 py-1 text-xs font-black select-none">
-                POW!
-            </div>
-
-            <div class="text-center space-y-4">
+        <section id="objectives" class="py-12 space-y-8">
+            <div class="text-center space-y-4 max-w-4xl mx-auto relative">
+                <!-- Floating SFX "POW!" dính sát tiêu đề để không che phủ nội dung -->
+                <div class="absolute -top-6 right-4 md:right-16 comic-sfx px-3 py-1 text-xs font-black select-none z-20">
+                    POW!
+                </div>
                 <h2 class="text-3xl md:text-5xl font-comic tracking-wide uppercase text-glitch text-yellow-400">BẢN CHỈ HƯỚNG MỤC TIÊU SỨ MỆNH</h2>
                 <p class="text-gray-400 max-w-2xl mx-auto text-xs md:text-sm font-medium">
                     Portfolio này không chỉ đơn thuần là nơi lưu trữ bài tập, mà là một không gian có hệ thống để mình thực hiện các sứ mệnh cốt lõi:
@@ -365,12 +364,11 @@
 
         <!-- Projects Section (Trang Dự án) -->
         <section id="projects" class="py-16 space-y-12 relative">
-            <!-- Floating SFX "SLAM!" -->
-            <div class="absolute -left-4 top-10 comic-sfx px-4 py-2 font-black text-sm select-none transform -rotate-12 z-20">
-                SLAM!
-            </div>
-
-            <div class="text-center space-y-4">
+            <div class="text-center space-y-4 max-w-4xl mx-auto relative">
+                <!-- Floating SFX "SLAM!" dính sát tiêu đề để không che phủ nội dung -->
+                <div class="absolute -top-6 left-4 md:left-16 comic-sfx px-4 py-2 font-black text-sm select-none transform -rotate-12 z-20">
+                    SLAM!
+                </div>
                 <h2 class="text-3xl md:text-5xl font-black tracking-wide uppercase text-glitch">BẢN ĐỒ PHÁT TRIỂN NĂNG LỰC SỐ</h2>
                 <p class="text-gray-400 max-w-2xl mx-auto font-medium text-xs md:text-sm">
                     Dưới đây là 6 nhiệm vụ thực hành đã được mình hoàn thiện chi tiết. Hãy chạm vào từng panel để mở cổng đa vũ trụ tương tác đặc biệt!
@@ -517,12 +515,11 @@
 
         <!-- Reflections & Conclusion (Trang Tổng kết) -->
         <section id="reflection" class="py-16 space-y-12 relative">
-            <!-- Floating SFX "BOOM!" -->
-            <div class="absolute left-6 top-1/2 comic-sfx px-4 py-2 font-black text-sm select-none transform rotate-12 z-20">
-                BOOM!
-            </div>
-
-            <div class="text-center space-y-4">
+            <div class="text-center space-y-4 max-w-4xl mx-auto relative">
+                <!-- Floating SFX "BOOM!" dính sát tiêu đề để không che phủ nội dung -->
+                <div class="absolute -top-6 right-4 md:right-16 comic-sfx px-4 py-2 font-black text-sm select-none transform rotate-12 z-20">
+                    BOOM!
+                </div>
                 <h2 class="text-3xl md:text-5xl font-black tracking-wide uppercase text-glitch">ĐÚC KẾT SỨ MỆNH KHÔNG GIAN SỐ</h2>
                 <p class="text-gray-400 max-w-2xl mx-auto font-medium text-xs">
                     Chiêm nghiệm sâu sắc của bản thân sau 1 tuần lăn lộn với thực tế thao tác công nghệ.
@@ -592,7 +589,7 @@
 
                 <div class="flex items-center gap-3 text-red-400">
                     <i data-lucide="folder-git" class="w-8 h-8"></i>
-                    <h2 class="text-3xl font-black uppercase tracking-wider text-glitch">HỆ THỐNG GIẢ LẬP FILE EXPLORER</h2>
+                    <h2 class="text-3xl font-black uppercase tracking-wider">HỆ THỐNG GIẢ LẬP FILE EXPLORER</h2>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 pt-4">
@@ -658,7 +655,7 @@
 
                 <div class="flex items-center gap-3 text-cyan-400">
                     <i data-lucide="search" class="w-8 h-8"></i>
-                    <h2 class="text-3xl font-comic uppercase tracking-wider text-glitch">HỘI ĐỒNG TRA CỨU 10 TÀI LIỆU KHOA HỌC</h2>
+                    <h2 class="text-3xl font-black uppercase tracking-wider text-glitch">HỘI ĐỒNG TRA CỨU 10 TÀI LIỆU KHOA HỌC</h2>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 pt-4">
@@ -791,7 +788,7 @@
 
                 <div class="flex items-center gap-3 text-pink-400">
                     <i data-lucide="users" class="w-8 h-8"></i>
-                    <h2 class="text-3xl font-black uppercase tracking-wider text-glitch">BẢNG KANBAN TIẾN ĐỘ THỜI GIAN THỰC</h2>
+                    <h2 class="text-3xl font-black uppercase tracking-wider">BẢNG KANBAN TIẾN ĐỘ THỜI GIAN THỰC</h2>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 pt-4">
@@ -865,9 +862,9 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
                     <div class="space-y-4 text-xs md:text-sm text-gray-300">
-                        <h3 class="text-lg font-bold text-green-300">Quy trình sáng tạo 3 giai đoạn</h3>
+                        <h3 class="text-lg font-bold text-green-300">Tạo tác tác phẩm "Smart AI"</h3>
                         <p>
-                            Dự án: Thiết kế bộ Infographic <strong class="text-white">"Kỷ nguyên mới: Ứng dụng AI trong Học tập Ngôn ngữ"</strong>. Quy trình phối hợp đa tầng công cụ AI chuyên sâu của Việt:
+                            Sản phẩm: Infographic <strong class="text-white">"Kỷ nguyên mới: Ứng dụng AI trong Học tập Ngôn ngữ"</strong>. Quy trình phối hợp đa tầng công cụ AI chuyên sâu của Việt:
                         </p>
                         <div class="space-y-3 bg-slate-950/40 p-3 rounded-lg border border-slate-900 text-xs">
                             <p><strong class="text-cyan-400 block mb-1">Giai đoạn 1: Nghiên cứu nội dung và Kiến trúc thông tin (Gemini)</strong>
@@ -883,7 +880,7 @@
                             - Prompt: <code class="bg-black/60 px-1 py-0.5 rounded text-[10px] text-yellow-400">"Tech infographic template, dark theme, neon green and slate gray accents, minimalist style, language learning concept."</code></p>
                         </div>
                         <p class="p-3 rounded-lg bg-green-950/20 border border-green-500/20 text-xs leading-relaxed text-gray-300">
-                            <strong class="text-green-300">Sự can thiệp của con người (Chiếm 60% khối lượng):</strong> Do AI tạo hình ảnh thường gặp lỗi kết cấu chữ (méo chữ, ngôn ngữ giả), mình đưa bức ảnh vào phần mềm đồ họa xóa bỏ ký tự rác, cân bằng dải sáng (Color Grading). Phá vỡ bố cục rập khuôn của Canva, sắp xếp text theo tỷ lệ vàng 1:1.618, thay phông mặc định sang Urbanist và Poppins việt hóa mượt mà, đổi icon đồng bộ nét vẽ Vector.
+                            <strong class="text-green-300">Nhân lực định hình thẩm mỹ (Chiếm 60% khối lượng):</strong> Do AI luôn tạo ra các chữ cái rác méo mó vô nghĩa, mình tiến hành can thiệp xóa rác ký tự thô, chuyển đổi font Urbanist/Poppins việt hóa mượt mà và phân cấp không gian white space vàng. Sắp xếp lại khối văn bản theo tỷ lệ vàng 1:1.618 và chọn các biểu tượng vector phẳng tối giản để đồng nhất thiết kế.
                         </p>
                     </div>
 
@@ -965,9 +962,9 @@
                     <div class="p-5 rounded-2xl bg-slate-950/40 border-2 border-slate-900 space-y-3 text-xs">
                         <h3 class="text-sm font-bold text-yellow-400 uppercase">Thực hành tác vụ học tập có AI hỗ trợ hợp lý</h3>
                         <p class="leading-relaxed">
-                            <strong class="text-white">Nhiệm vụ:</strong> Phác thảo dàn ý và tìm kiếm luận cứ cho bài luận: <span class="text-pink-400 italic">"Liệu phương thức thanh toán trực tuyến có khiến tiền mặt trở nên lỗi thời trong tương lai gần tại Việt Nam?"</span>.<br>
+                            <strong class="text-white">Nhiệm vụ:</strong> phác thảo dàn ý và tìm kiếm luận cứ cho bài luận: <span class="text-pink-400 italic">"Liệu phương thức thanh toán trực tuyến có khiến tiền mặt trở nên lỗi thời trong tương lai gần tại Việt Nam?"</span>.<br>
                             - <strong class="text-white">Prompt đã dùng:</strong> "Hãy đóng vai một chuyên gia kinh tế vĩ mô, lập một dàn ý chi tiết gồm 4 phần (Mở bài, Thực trạng tại Việt Nam, Luận điểm phản biện về tính bền vững của tiền mặt, Kết luận). Đồng thời, gợi ý 3 số liệu thực tế cần tìm kiếm..."<br>
-                            - <strong class="text-white">Đánh giá và Tinh chỉnh sáng tạo:</strong> Dàn ý AI cung cấp có logic tốt nhưng số liệu gợi ý ở dạng chung chung, không có mốc thời gian và nguồn cụ thể (dễ phạm lỗi ngụy tạo dữ liệu). Việt tiến hành <span class="text-cyan-400 font-bold">thay thế dữ liệu thủ công từ các nguồn chính thống</span>: Thay số liệu chung bằng số liệu chính xác của Ngân hàng Nhà nước Việt Nam về tỷ lệ thanh toán COD vẫn chiếm trên 60% trong thương mại điện tử, và báo cáo của Tổng cục Thống kê về hạ tầng số tại vùng nông thôn.
+                            - <strong class="text-white">Đánh giá và Tinh chỉnh sáng tạo:</strong> Dàn ý AI cung cấp có logic tốt nhưng số liệu gợi ý ở dạng chung chung, không có mốc thời gian và nguồn cụ thể (dễ phạm lỗi ngụy tạo dữ liệu). Việt tiến hành <span class="text-cyan-400 font-bold">thay thế dữ liệu thủ công từ các nguồn chính thống</span>: thay số liệu chung bằng số liệu chính xác của Ngân hàng Nhà nước Việt Nam về tỷ lệ thanh toán COD vẫn chiếm trên 60% trong thương mại điện tử, và báo cáo của Tổng cục Thống kê về hạ tầng số tại vùng nông thôn.
                         </p>
                     </div>
                 </div>
@@ -1140,7 +1137,7 @@
                 // Thêm nút back
                 const backBtn = document.createElement("div");
                 backBtn.className = "flex flex-col items-center justify-center p-2 cursor-pointer rounded hover:bg-white/5";
-                backBtn.innerHTML = `<i data-lucide="arrow-left" class="w-8 h-8 text-yellow-400"></i><span class="text-[9px] text-gray-300 mt-1 font-bold">Trở về</span>`;
+                backBtn.innerHTML = `<i data-lucide="arrow-left" class="w-8 h-8 text-yellow-400"></i><span class="text-[9px] text-gray-300 mt-1">Trở về</span>`;
                 backBtn.onclick = () => { currentDir = "root"; renderExplorer(); };
                 fileViewer.appendChild(backBtn);
 
