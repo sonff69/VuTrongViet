@@ -8,10 +8,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Google Fonts: Montserrat (Việt hóa cực dày cho Comic titles) & Be Vietnam Pro (Học thuật hiện đại) -->
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Montserrat:ital,wght@0,800;0,900;1,900&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Duy nhất phông chữ Be Vietnam Pro hỗ trợ 100% Tiếng Việt không lỗi -->
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <style>
-        /* Tối ưu hóa phông chữ Tiếng Việt */
+        /* Đồng bộ phông chữ để chống lỗi font hoàn toàn */
         body {
             font-family: 'Be Vietnam Pro', sans-serif;
             background-image: url('back.jpg');
@@ -23,19 +23,18 @@
             overflow-x: hidden;
         }
 
-        /* Phông tiêu đề siêu dày hỗ trợ Tiếng Việt tuyệt đối, loại bỏ hoàn toàn lỗi vỡ font */
-        h1, h2, h3, .font-comic {
-            font-family: 'Montserrat', sans-serif;
+        /* Biến hóa Be Vietnam Pro 900 Italic thành phông Comic-Punk siêu chất và hoàn hảo diacritic */
+        h1, h2, h3, h4, .font-comic {
+            font-family: 'Be Vietnam Pro', sans-serif;
             font-weight: 900;
+            font-style: italic;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
         }
 
-        h3, h4, .font-display {
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        /* Lớp phủ nền bảo vệ tương phản, giữ nguyên màu sắc gốc của back.jpg */
+        /* Lớp phủ nền bảo vệ độ tương phản chữ, giữ nguyên màu sắc gốc của back.jpg */
         .spider-overlay {
-            background: radial-gradient(circle at 50% 50%, rgba(9, 6, 21, 0.78) 0%, rgba(4, 2, 9, 0.94) 100%);
+            background: radial-gradient(circle at 50% 50%, rgba(9, 6, 21, 0.75) 0%, rgba(4, 2, 9, 0.94) 100%);
         }
 
         /* Hiệu ứng đa vũ trụ kính mờ */
@@ -106,7 +105,7 @@
             75% { text-shadow: -2px -1.5px 0 #ef4444, 2px 1.5px 0 #06b6d4; }
         }
         .text-glitch {
-            animation: text-glitch-anim 0.6s infinite steps(2);
+            animation: text-glitch-anim 0.7s infinite steps(2);
         }
 
         /* Hiệu ứng quét sóng đa vũ trụ quét từ trên xuống */
@@ -139,7 +138,7 @@
             z-index: 10;
         }
 
-        /* Ben-day Dot Background Pattern cho hero */
+        /* Ben-day Dot Background Pattern cho các phần lớn */
         .benday-bg {
             background-image: radial-gradient(rgba(6, 182, 212, 0.1) 12%, transparent 13%);
             background-size: 10px 10px;
@@ -147,6 +146,9 @@
     </style>
 </head>
 <body class="relative min-h-screen">
+
+    <!-- Canvas vẽ tơ nhện đa chiều tương tác siêu mượt -->
+    <canvas id="spider-web-canvas" class="fixed inset-0 z-0 pointer-events-none"></canvas>
 
     <!-- Lớp phủ quét sóng đa chiều -->
     <div class="spider-scanline"></div>
@@ -186,18 +188,6 @@
 
         <!-- Hero Section -->
         <section id="about" class="min-h-[80vh] flex flex-col justify-center py-8 benday-bg rounded-3xl relative p-6">
-            <!-- Mạng tơ nhện khổng lồ sau Hero -->
-            <div class="absolute inset-0 z-0 pointer-events-none opacity-20 flex items-center justify-center">
-                <svg width="400" height="400" viewBox="0 0 100 100" class="text-cyan-400 animate-pulse">
-                    <polygon points="50,10 85,25 85,75 50,90 15,75 15,25" fill="none" stroke="currentColor" stroke-width="0.5"/>
-                    <polygon points="50,20 75,30 75,70 50,80 25,70 25,30" fill="none" stroke="currentColor" stroke-width="0.5"/>
-                    <polygon points="50,30 65,37 65,63 50,70 35,63 35,37" fill="none" stroke="currentColor" stroke-width="0.5"/>
-                    <line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" stroke-width="0.5"/>
-                    <line x1="15" y1="25" x2="85" y2="75" stroke="currentColor" stroke-width="0.5"/>
-                    <line x1="15" y1="75" x2="85" y2="25" stroke="currentColor" stroke-width="0.5"/>
-                </svg>
-            </div>
-
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
                 <!-- Văn bản giới thiệu -->
                 <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
@@ -262,7 +252,7 @@
                                 <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
                             </div>
                             <div class="text-center pt-2">
-                                <h3 class="text-lg md:text-xl font-black text-red-400 uppercase tracking-wider">VŨ TRỌNG VIỆT</h3>
+                                <h3 class="text-lg md:text-xl font-black text-red-400 uppercase tracking-wider text-glitch">VŨ TRỌNG VIỆT</h3>
                                 <p class="text-[10px] font-bold text-cyan-400 uppercase tracking-widest">MULTIVERSE DIGITAL EXPLORER</p>
                             </div>
                         </div>
@@ -351,7 +341,12 @@
         </section>
 
         <!-- Projects Section (Trang Dự án) -->
-        <section id="projects" class="py-16 space-y-12">
+        <section id="projects" class="py-16 space-y-12 relative">
+            <!-- Floating SFX "SLAM!" -->
+            <div class="absolute -left-4 top-10 comic-sfx px-4 py-2 font-black text-sm select-none transform -rotate-12 z-20">
+                SLAM!
+            </div>
+
             <div class="text-center space-y-4">
                 <h2 class="text-3xl md:text-5xl font-black tracking-wide uppercase text-glitch">BẢN ĐỒ PHÁT TRIỂN NĂNG LỰC SỐ</h2>
                 <p class="text-gray-400 max-w-2xl mx-auto font-medium text-xs md:text-sm">
@@ -373,14 +368,14 @@
                         <i data-lucide="folder-git" class="w-6 h-6"></i>
                     </div>
                     <div class="relative z-10">
-                        <h3 class="text-lg md:text-xl font-black text-cyan-300 uppercase">HỆ THỐNG FILE SỐ</h3>
+                        <h3 class="text-lg md:text-xl font-black text-cyan-300 uppercase text-glitch">HỆ THỐNG FILE SỐ</h3>
                     </div>
                     <p class="text-xs text-gray-300 leading-relaxed line-clamp-3 relative z-10">
                         Thực hiện 12 bước sát hạch thao tác tệp và cấu trúc hóa hệ thống thư mục cây logic chuẩn chỉ và ngăn nắp [4].
                     </p>
                     <div class="flex items-center gap-2 text-red-400 text-xs font-bold uppercase tracking-widest pt-2 relative z-10">
                         <span>Chạy mô phỏng tệp</span>
-                        <i data-lucide="chevrons-right" class="w-4 h-4"></i>
+                        <i data-lucide="chevrons-right" class="w-4 h-4 animate-pulse"></i>
                     </div>
                 </div>
 
@@ -395,7 +390,7 @@
                         <i data-lucide="search" class="w-6 h-6"></i>
                     </div>
                     <div class="relative z-10">
-                        <h3 class="text-lg md:text-xl font-black text-red-400 uppercase">MÀNG LỌC TÀI LIỆU</h3>
+                        <h3 class="text-lg md:text-xl font-black text-red-400 uppercase text-glitch">MÀNG LỌC TÀI LIỆU</h3>
                     </div>
                     <p class="text-xs text-gray-300 leading-relaxed line-clamp-3 relative z-10">
                         Đánh giá toàn diện màng lọc dữ liệu học thuật của 10 công trình nghiên cứu dịch thuật số và AI chất lượng cao [10].
@@ -417,14 +412,14 @@
                         <i data-lucide="terminal" class="w-6 h-6"></i>
                     </div>
                     <div class="relative z-10">
-                        <h3 class="text-lg md:text-xl font-black text-yellow-400 uppercase">KỸ THUẬT PROMPTING</h3>
+                        <h3 class="text-lg md:text-xl font-black text-yellow-400 uppercase text-glitch">KỸ THUẬT PROMPTING</h3>
                     </div>
                     <p class="text-xs text-gray-300 leading-relaxed line-clamp-3 relative z-10">
                         Làm chủ công thức C-R-I-S-P, xây dựng 3 cấp độ Prompt cho 3 tác vụ học thuật ngôn ngữ then chốt [2].
                     </p>
                     <div class="flex items-center gap-2 text-red-400 text-xs font-bold uppercase tracking-widest pt-2 relative z-10">
                         <span>Kích hoạt Playground</span>
-                        <i data-lucide="chevrons-right" class="w-4 h-4"></i>
+                        <i data-lucide="chevrons-right" class="w-4 h-4 animate-bounce"></i>
                     </div>
                 </div>
 
@@ -439,7 +434,7 @@
                         <i data-lucide="users" class="w-6 h-6"></i>
                     </div>
                     <div class="relative z-10">
-                        <h3 class="text-lg md:text-xl font-black text-pink-400 uppercase">ĐỒNG TÁC TÁC VỤ</h3>
+                        <h3 class="text-lg md:text-xl font-black text-pink-400 uppercase text-glitch">ĐỒNG TÁC TÁC VỤ</h3>
                     </div>
                     <p class="text-xs text-gray-300 leading-relaxed line-clamp-3 relative z-10">
                         Quy trình hợp tác nhóm thiết kế Cẩm nang ChatGPT thông qua Trello, Docs, Meet và giải quyết xung đột trang [1, 2].
@@ -461,7 +456,7 @@
                         <i data-lucide="palette" class="w-6 h-6"></i>
                     </div>
                     <div class="relative z-10">
-                        <h3 class="text-lg md:text-xl font-black text-green-300 uppercase">KHOA HỌC TRỰC QUAN</h3>
+                        <h3 class="text-lg md:text-xl font-black text-green-300 uppercase text-glitch">KHOA HỌC TRỰC QUAN</h3>
                     </div>
                     <p class="text-xs text-gray-300 leading-relaxed line-clamp-3 relative z-10">
                         Kết hợp quy trình Multi-AI Workflow vẽ Infographic "Smart AI" và tinh chỉnh lỗi text biến dạng thủ công [6].
@@ -483,7 +478,7 @@
                         <i data-lucide="shield-alert" class="w-6 h-6"></i>
                     </div>
                     <div class="relative z-10">
-                        <h3 class="text-lg md:text-xl font-black text-purple-300 uppercase">LIÊM CHÍNH AI</h3>
+                        <h3 class="text-lg md:text-xl font-black text-purple-300 uppercase text-glitch">LIÊM CHÍNH AI</h3>
                     </div>
                     <p class="text-xs text-gray-300 leading-relaxed line-clamp-3 relative z-10">
                         Đối sánh chiến lược quản lý AI có kiểm soát giữa các trường đại học thành viên ĐHQGHN và 6 nguyên tắc liêm chính cá nhân [1, 2].
@@ -500,14 +495,14 @@
         <!-- Reflections & Conclusion (Trang Tổng kết) -->
         <section id="reflection" class="py-16 space-y-12 relative">
             <!-- Floating SFX "BOOM!" -->
-            <div class="absolute left-6 top-1/2 comic-sfx px-4 py-2 font-black text-sm select-none transform rotate-12">
+            <div class="absolute left-6 top-1/2 comic-sfx px-4 py-2 font-black text-sm select-none transform rotate-12 z-20">
                 BOOM!
             </div>
 
             <div class="text-center space-y-4">
-                <h2 class="text-3xl md:text-5xl font-black tracking-wide uppercase text-glitch">ĐÚC KẾT SỨ MỆNH KHÔNG GIAN SỐ</h2>
+                <h2 class="text-3xl md:text-5xl font-black tracking-wide uppercase text-glitch">CHÌ SỐ SỨ MỆNH NHÌN LẠI</h2>
                 <p class="text-gray-400 max-w-2xl mx-auto font-medium text-xs">
-                    Chiêm nghiệm sâu sắc của bản thân sau 1 tuần lăn lộn với thực tế thao tác công nghệ [3].
+                    Một hành trình không phải để thể hiện thành tích tuyệt đối, mà là nỗ lực tự hoàn thiện năng lực số từng ngày [3].
                 </p>
             </div>
 
@@ -869,7 +864,7 @@
 
                 <div class="flex items-center gap-3 text-purple-400">
                     <i data-lucide="shield-alert" class="w-8 h-8"></i>
-                    <h2 class="text-3xl font-black uppercase tracking-wider text-glitch">ĐỐI SÁNH LIÊM CHÍNH VĨ MÔ</h2>
+                    <h2 class="text-3xl font-black uppercase tracking-wider">ĐỐI SÁNH LIÊM CHÍNH VĨ MÔ</h2>
                 </div>
 
                 <div class="space-y-6 pt-4 text-xs md:text-sm text-gray-300">
@@ -945,6 +940,93 @@
             modal.classList.add('hidden');
             document.body.classList.remove('overflow-hidden');
         }
+
+        // ==================== KHỞI CHẠY TƠ NHỆN CANVAS ĐA VŨ TRỤ TƯƠNG TÁC ====================
+        const canvas = document.getElementById('spider-web-canvas');
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        let particles = [];
+        let mouse = { x: null, y: null, active: false };
+
+        // Tạo 45 hạt không gian lơ lửng tự do
+        for(let i = 0; i < 45; i++) {
+            particles.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                vx: (Math.random() - 0.5) * 0.4,
+                vy: (Math.random() - 0.5) * 0.4,
+                radius: Math.random() * 2 + 1
+            });
+        }
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+            mouse.active = true;
+        });
+
+        window.addEventListener('mouseleave', () => {
+            mouse.active = false;
+        });
+
+        function animateWebs() {
+            ctx.clearRect(0, 0, width, height);
+            
+            // Vẽ các đường tơ liên kết
+            for(let i = 0; i < particles.length; i++) {
+                let p1 = particles[i];
+                
+                // Hạt chuyển động chậm rãi
+                p1.x += p1.vx;
+                p1.y += p1.vy;
+                
+                if(p1.x < 0 || p1.x > width) p1.vx *= -1;
+                if(p1.y < 0 || p1.y > height) p1.vy *= -1;
+                
+                // Vẽ tâm hạt
+                ctx.beginPath();
+                ctx.arc(p1.x, p1.y, p1.radius, 0, Math.PI*2);
+                ctx.fillStyle = 'rgba(6, 182, 212, 0.4)';
+                ctx.fill();
+                
+                // Kết nối tơ nhện neon tím giữa các hạt lân cận
+                for(let j = i + 1; j < particles.length; j++) {
+                    let p2 = particles[j];
+                    let dist = Math.hypot(p1.x - p2.x, p1.y - p2.y);
+                    if(dist < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = `rgba(139, 92, 246, ${1 - dist/120})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+                
+                // Phản hồi kéo tơ khi di chuột (Màu đỏ neon rực cháy)
+                if(mouse.active) {
+                    let mDist = Math.hypot(p1.x - mouse.x, p1.y - mouse.y);
+                    if(mDist < 180) {
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(mouse.x, mouse.y);
+                        ctx.strokeStyle = `rgba(239, 68, 68, ${0.85 * (1 - mDist/180)})`;
+                        ctx.lineWidth = 0.85;
+                        ctx.stroke();
+                    }
+                }
+            }
+            
+            requestAnimationFrame(animateWebs);
+        }
+        animateWebs();
 
         // ==================== BÀI 1: GIẢ LẬP FILE EXPLORER ====================
         let currentDir = "root";
