@@ -29,14 +29,18 @@
             font-weight: 900;
         }
 
+        h3, h4, .font-display {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
         /* Lớp phủ nền bảo vệ tương phản, giữ nguyên màu sắc gốc của back.jpg */
         .spider-overlay {
-            background: radial-gradient(circle at 50% 50%, rgba(10, 8, 22, 0.78) 0%, rgba(5, 3, 11, 0.94) 100%);
+            background: radial-gradient(circle at 50% 50%, rgba(9, 6, 21, 0.78) 0%, rgba(4, 2, 9, 0.94) 100%);
         }
 
         /* Hiệu ứng đa vũ trụ kính mờ */
         .spider-glass {
-            background: rgba(14, 11, 26, 0.78);
+            background: rgba(13, 9, 26, 0.78);
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
             border: 2px solid rgba(255, 255, 255, 0.08);
@@ -53,13 +57,25 @@
             box-shadow: 6px 6px 0px 0px #eab308;
         }
 
-        /* Thẻ Comic-Card */
+        /* Thẻ Comic-Card tích hợp hoa văn Ben-Day dots */
         .spider-card {
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 2.5px solid #0f172a;
+            border: 3px solid #0f172a;
+            position: relative;
+        }
+        .spider-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background-image: radial-gradient(rgba(239, 68, 68, 0.12) 15%, transparent 16%);
+            background-size: 8px 8px;
+            opacity: 0.5;
+            z-index: 1;
+            pointer-events: none;
         }
         .spider-card:hover {
-            transform: scale(1.03) rotate(0.5deg);
+            transform: scale(1.04) rotate(0.8deg);
             border-color: #ef4444;
             box-shadow: 8px 8px 0px 0px #06b6d4;
         }
@@ -84,17 +100,56 @@
 
         /* Hiệu ứng nhiễu kỹ thuật số liên tục (Full sẵn không cần di chuột) */
         @keyframes text-glitch-anim {
-            0%, 100% { text-shadow: 1.5px -0.5px 0 #ef4444, -1.5px 0.5px 0 #06b6d4; }
-            25% { text-shadow: -1px 1px 0 #ef4444, 1px -1px 0 #06b6d4; }
-            50% { text-shadow: 1.5px 1px 0 #ef4444, -1px -1.5px 0 #06b6d4; }
-            75% { text-shadow: -1.5px -1px 0 #ef4444, 1.5px 1px 0 #06b6d4; }
+            0%, 100% { text-shadow: 2px -0.8px 0 #ef4444, -2px 0.8px 0 #06b6d4; }
+            25% { text-shadow: -1.5px 1.5px 0 #ef4444, 1.5px -1.5px 0 #06b6d4; }
+            50% { text-shadow: 2px 1.5px 0 #ef4444, -1.5px -2px 0 #06b6d4; }
+            75% { text-shadow: -2px -1.5px 0 #ef4444, 2px 1.5px 0 #06b6d4; }
         }
         .text-glitch {
-            animation: text-glitch-anim 0.8s infinite steps(2);
+            animation: text-glitch-anim 0.6s infinite steps(2);
+        }
+
+        /* Hiệu ứng quét sóng đa vũ trụ quét từ trên xuống */
+        @keyframes scanline-sweep {
+            0% { transform: translateY(-100vh); }
+            100% { transform: translateY(100vh); }
+        }
+        .spider-scanline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #ef4444, #06b6d4, transparent);
+            opacity: 0.3;
+            z-index: 50;
+            pointer-events: none;
+            animation: scanline-sweep 6s linear infinite;
+        }
+
+        /* Comic SFX style */
+        .comic-sfx {
+            font-weight: 900;
+            font-style: italic;
+            background: #eab308;
+            color: #000;
+            border: 3px solid #000;
+            box-shadow: 4px 4px 0px #ef4444;
+            transform: rotate(-8deg) skewX(-8deg);
+            z-index: 10;
+        }
+
+        /* Ben-day Dot Background Pattern cho hero */
+        .benday-bg {
+            background-image: radial-gradient(rgba(6, 182, 212, 0.1) 12%, transparent 13%);
+            background-size: 10px 10px;
         }
     </style>
 </head>
 <body class="relative min-h-screen">
+
+    <!-- Lớp phủ quét sóng đa chiều -->
+    <div class="spider-scanline"></div>
 
     <!-- Lớp phủ bảo vệ nội dung hiển thị rõ nét -->
     <div class="fixed inset-0 spider-overlay z-0"></div>
@@ -120,7 +175,7 @@
                 <a href="https://drive.google.com/drive/folders/1_aF20A0Z7YX-dF71IAgsnvyx1450GLlq?usp=drive_link" 
                    target="_blank" 
                    class="px-4 py-2 text-[10px] md:text-xs font-bold tracking-widest text-white uppercase rounded-xl border-2 border-red-500 bg-red-600/20 hover:bg-red-600 transition-all duration-200 hover:shadow-[0_0_15px_#ef4444] flex items-center gap-2 transform -skew-x-12">
-                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                    <i data-lucide="external-link" class="w-4 h-4 animate-pulse"></i>
                     GG DRIVE FILE
                 </a>
             </div>
@@ -130,12 +185,23 @@
     <main class="relative z-10 max-w-7xl mx-auto px-4 pt-32 pb-16">
 
         <!-- Hero Section -->
-        <section id="about" class="min-h-[80vh] flex flex-col justify-center py-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                
+        <section id="about" class="min-h-[80vh] flex flex-col justify-center py-8 benday-bg rounded-3xl relative p-6">
+            <!-- Mạng tơ nhện khổng lồ sau Hero -->
+            <div class="absolute inset-0 z-0 pointer-events-none opacity-20 flex items-center justify-center">
+                <svg width="400" height="400" viewBox="0 0 100 100" class="text-cyan-400 animate-pulse">
+                    <polygon points="50,10 85,25 85,75 50,90 15,75 15,25" fill="none" stroke="currentColor" stroke-width="0.5"/>
+                    <polygon points="50,20 75,30 75,70 50,80 25,70 25,30" fill="none" stroke="currentColor" stroke-width="0.5"/>
+                    <polygon points="50,30 65,37 65,63 50,70 35,63 35,37" fill="none" stroke="currentColor" stroke-width="0.5"/>
+                    <line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" stroke-width="0.5"/>
+                    <line x1="15" y1="25" x2="85" y2="75" stroke="currentColor" stroke-width="0.5"/>
+                    <line x1="15" y1="75" x2="85" y2="25" stroke="currentColor" stroke-width="0.5"/>
+                </svg>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
                 <!-- Văn bản giới thiệu -->
                 <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-lg bg-red-600/10 border-2 border-red-500/50 text-red-300 text-xs font-bold uppercase tracking-widest transform -rotate-1">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-lg bg-red-600/10 border-2 border-red-500/50 text-red-300 text-xs font-bold uppercase tracking-widest transform -rotate-1 relative">
                         <i data-lucide="shield" class="w-4 h-4 text-red-400"></i>
                         ĐA VŨ TRỤ CÔNG NGHỆ SỐ
                     </div>
@@ -155,15 +221,21 @@
 
                     <!-- Danh mục thông tin chi tiết -->
                     <div class="grid grid-cols-2 gap-4 max-w-md mx-auto lg:mx-0 pt-4 text-left">
-                        <div class="p-3 rounded-xl bg-slate-900/60 border-2 border-cyan-500/40 shadow-comic-cyan transform -rotate-1">
+                        <div class="p-3 rounded-xl bg-slate-900/60 border-2 border-cyan-500/40 shadow-comic-cyan transform -rotate-1 relative overflow-hidden">
+                            <!-- SVG Web góc -->
+                            <svg class="absolute top-0 right-0 w-8 h-8 text-cyan-400 opacity-40" viewBox="0 0 10 10"><path d="M0,0 L10,10 M0,3 L7,10 M0,6 L4,10 M3,0 L10,7 M6,0 L10,4" stroke="currentColor" stroke-width="0.3" fill="none"/></svg>
                             <span class="text-[10px] text-cyan-400 block font-bold uppercase tracking-widest">MÃ SINH VIÊN</span>
                             <span class="text-sm md:text-base font-black tracking-wider font-comic">25041222</span>
                         </div>
-                        <div class="p-3 rounded-xl bg-slate-900/60 border-2 border-red-500/40 shadow-comic-red transform rotate-1">
+                        <div class="p-3 rounded-xl bg-slate-900/60 border-2 border-red-500/40 shadow-comic-red transform rotate-1 relative overflow-hidden">
+                            <!-- SVG Web góc -->
+                            <svg class="absolute top-0 left-0 w-8 h-8 text-red-500 opacity-40" viewBox="0 0 10 10"><path d="M10,0 L0,10 M10,3 L3,10 M10,6 L6,10 M7,0 L0,7 M4,0 L0,4" stroke="currentColor" stroke-width="0.3" fill="none"/></svg>
                             <span class="text-[10px] text-red-400 block font-bold uppercase tracking-widest">CHUYÊN NGÀNH</span>
                             <span class="text-sm md:text-base font-black tracking-wider font-comic">Ngôn ngữ Anh</span>
                         </div>
-                        <div class="p-3 rounded-xl bg-slate-900/60 border-2 border-yellow-500/40 col-span-2 shadow-comic-yellow transform -rotate-1">
+                        <div class="p-3 rounded-xl bg-slate-900/60 border-2 border-yellow-500/40 col-span-2 shadow-comic-yellow transform -rotate-1 relative overflow-hidden">
+                            <!-- SVG Web góc -->
+                            <svg class="absolute bottom-0 right-0 w-8 h-8 text-yellow-500 opacity-40" viewBox="0 0 10 10"><path d="M0,10 L10,0 M0,7 L7,0 M0,4 L4,0 M3,10 L10,3 M6,10 L10,6" stroke="currentColor" stroke-width="0.3" fill="none"/></svg>
                             <span class="text-[10px] text-yellow-400 block font-bold uppercase tracking-widest">TRƯỜNG ĐÀO TẠO</span>
                             <span class="text-xs md:text-sm font-bold text-gray-200">Trường Đại học Ngoại Ngữ - ĐHQGHN</span>
                         </div>
@@ -171,12 +243,20 @@
                 </div>
 
                 <!-- Avatar kiểu Comic Panel -->
-                <div class="lg:col-span-5 flex justify-center">
+                <div class="lg:col-span-5 flex justify-center relative">
+                    <!-- Comic SFX "THWIP!" cực chất nổi lên -->
+                    <div class="absolute -top-4 -left-4 comic-sfx px-4 py-2 font-black text-sm select-none animate-bounce">
+                        THWIP!
+                    </div>
+
                     <div class="relative w-72 h-72 md:w-96 md:h-96 group">
                         <div class="absolute inset-0 rounded-3xl bg-cyan-400/20 -translate-x-3 -translate-y-3 blur-sm group-hover:-translate-x-5 transition-transform"></div>
                         <div class="absolute inset-0 rounded-3xl bg-red-500/20 translate-x-3 translate-y-3 blur-sm group-hover:translate-x-5 transition-transform"></div>
                         
-                        <div class="absolute inset-0 rounded-2xl bg-slate-950 border-4 border-slate-900 overflow-hidden flex flex-col justify-between p-4 spider-glass shadow-comic-red animate-swing">
+                        <div class="absolute inset-0 rounded-2xl bg-slate-950 border-4 border-slate-900 overflow-hidden flex flex-col justify-between p-4 spider-glass shadow-comic-red animate-swing relative">
+                            <!-- SVG Corner Webs inside Frame -->
+                            <svg class="absolute top-0 right-0 w-12 h-12 text-red-500 opacity-60 pointer-events-none" viewBox="0 0 10 10"><path d="M0,0 L10,10 M0,3 L7,10 M0,6 L4,10 M3,0 L10,7 M6,0 L10,4" stroke="currentColor" stroke-width="0.4" fill="none"/></svg>
+                            
                             <div class="relative w-full h-[78%] rounded-lg overflow-hidden border-2 border-red-500/30">
                                 <img src="Hình 1.jpg" alt="Vũ Trọng Việt" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
@@ -193,7 +273,12 @@
         </section>
 
         <!-- Section: Mục tiêu Portfolio -->
-        <section id="objectives" class="py-12 space-y-8">
+        <section id="objectives" class="py-12 space-y-8 relative">
+            <!-- Floating SFX "POW!" -->
+            <div class="absolute right-12 top-0 comic-sfx px-3 py-1 text-xs font-black select-none">
+                POW!
+            </div>
+
             <div class="text-center space-y-4">
                 <h2 class="text-3xl md:text-5xl font-comic tracking-wide uppercase text-glitch text-yellow-400">BẢN CHỈ HƯỚNG MỤC TIÊU SỨ MỆNH</h2>
                 <p class="text-gray-400 max-w-2xl mx-auto text-xs md:text-sm font-medium">
@@ -202,7 +287,8 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="p-6 rounded-2xl spider-glass border-2 border-cyan-500/30 shadow-comic-cyan transform -rotate-1 space-y-3">
+                <div class="p-6 rounded-2xl spider-glass border-2 border-cyan-500/30 shadow-comic-cyan transform -rotate-1 space-y-3 relative overflow-hidden">
+                    <svg class="absolute bottom-0 right-0 w-16 h-12 text-cyan-400 opacity-20 pointer-events-none" viewBox="0 0 10 10"><path d="M0,10 L10,0 M0,7 L7,0 M0,4 L4,0 M3,10 L10,3 M6,10 L10,6" stroke="currentColor" stroke-width="0.3" fill="none"/></svg>
                     <div class="w-10 h-10 rounded-lg bg-cyan-500/15 flex items-center justify-center text-cyan-400">
                         <i data-lucide="layers" class="w-5 h-5"></i>
                     </div>
@@ -212,7 +298,8 @@
                     </p>
                 </div>
 
-                <div class="p-6 rounded-2xl spider-glass border-2 border-red-500/30 shadow-comic-red transform rotate-1 space-y-3">
+                <div class="p-6 rounded-2xl spider-glass border-2 border-red-500/30 shadow-comic-red transform rotate-1 space-y-3 relative overflow-hidden">
+                    <svg class="absolute bottom-0 left-0 w-16 h-12 text-red-500 opacity-20 pointer-events-none" viewBox="0 0 10 10"><path d="M10,10 L0,0 M10,7 L3,0 M10,4 L4,0 M7,10 L0,3 M4,10 L0,6" stroke="currentColor" stroke-width="0.3" fill="none"/></svg>
                     <div class="w-10 h-10 rounded-lg bg-red-500/15 flex items-center justify-center text-red-400">
                         <i data-lucide="user-check" class="w-5 h-5"></i>
                     </div>
@@ -222,7 +309,8 @@
                     </p>
                 </div>
 
-                <div class="p-6 rounded-2xl spider-glass border-2 border-yellow-500/30 shadow-comic-yellow transform -rotate-1 space-y-3">
+                <div class="p-6 rounded-2xl spider-glass border-2 border-yellow-500/30 shadow-comic-yellow transform -rotate-1 space-y-3 relative overflow-hidden">
+                    <svg class="absolute top-0 right-0 w-16 h-12 text-yellow-400 opacity-20 pointer-events-none" viewBox="0 0 10 10"><path d="M0,0 L10,10 M0,3 L7,10 M0,6 L4,10 M3,0 L10,7 M6,0 L10,4" stroke="currentColor" stroke-width="0.3" fill="none"/></svg>
                     <div class="w-10 h-10 rounded-lg bg-yellow-500/15 flex items-center justify-center text-yellow-400">
                         <i data-lucide="shield-check" class="w-5 h-5"></i>
                     </div>
@@ -235,7 +323,12 @@
         </section>
 
         <!-- Kêu gọi hành động với GG Drive -->
-        <section class="my-16">
+        <section class="my-16 relative">
+            <!-- Floating SFX "ZAP!" -->
+            <div class="absolute left-1/2 -top-6 -translate-x-1/2 comic-sfx px-4 py-1.5 text-sm font-black select-none z-20">
+                ZAP!
+            </div>
+
             <div class="relative p-8 md:p-12 rounded-3xl spider-glass border-4 border-cyan-500/40 shadow-comic-red overflow-hidden transform -rotate-1">
                 <div class="absolute -right-24 -bottom-24 w-80 h-80 bg-red-500/10 rounded-full blur-3xl"></div>
                 <div class="absolute -left-24 -top-24 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl"></div>
@@ -274,16 +367,18 @@
                     <div class="absolute -top-3 -right-3 px-3 py-1 bg-yellow-400 text-black font-black text-xs rounded-lg border-2 border-slate-950 uppercase font-comic">
                         TASK 01
                     </div>
-                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border-2 border-cyan-500 flex items-center justify-center text-cyan-400">
+                    <!-- Corner Web Decorative SVG -->
+                    <svg class="absolute top-0 right-0 w-8 h-8 text-cyan-400 opacity-40 pointer-events-none z-10" viewBox="0 0 10 10"><path d="M0,0 L10,10 M0,3 L7,10 M0,6 L4,10 M3,0 L10,7 M6,0 L10,4" stroke="currentColor" stroke-width="0.3" fill="none"/></svg>
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border-2 border-cyan-500 flex items-center justify-center text-cyan-400 relative z-10">
                         <i data-lucide="folder-git" class="w-6 h-6"></i>
                     </div>
-                    <div>
+                    <div class="relative z-10">
                         <h3 class="text-lg md:text-xl font-black text-cyan-300 uppercase">HỆ THỐNG FILE SỐ</h3>
                     </div>
-                    <p class="text-xs text-gray-300 leading-relaxed line-clamp-3">
+                    <p class="text-xs text-gray-300 leading-relaxed line-clamp-3 relative z-10">
                         Thực hiện 12 bước sát hạch thao tác tệp và cấu trúc hóa hệ thống thư mục cây logic chuẩn chỉ và ngăn nắp [4].
                     </p>
-                    <div class="flex items-center gap-2 text-red-400 text-xs font-bold uppercase tracking-widest pt-2">
+                    <div class="flex items-center gap-2 text-red-400 text-xs font-bold uppercase tracking-widest pt-2 relative z-10">
                         <span>Chạy mô phỏng tệp</span>
                         <i data-lucide="chevrons-right" class="w-4 h-4"></i>
                     </div>
@@ -294,16 +389,18 @@
                     <div class="absolute -top-3 -right-3 px-3 py-1 bg-yellow-400 text-black font-black text-xs rounded-lg border-2 border-slate-950 uppercase font-comic">
                         TASK 02
                     </div>
-                    <div class="w-12 h-12 rounded-xl bg-red-500/10 border-2 border-red-500 flex items-center justify-center text-red-400">
+                    <!-- Corner Web Decorative SVG -->
+                    <svg class="absolute top-0 left-0 w-8 h-8 text-red-500 opacity-40 pointer-events-none z-10" viewBox="0 0 10 10"><path d="M10,0 L0,10 M10,3 L3,10 M10,6 L6,10 M7,0 L0,7 M4,0 L0,4" stroke="currentColor" stroke-width="0.3" fill="none"/></svg>
+                    <div class="w-12 h-12 rounded-xl bg-red-500/10 border-2 border-red-500 flex items-center justify-center text-red-400 relative z-10">
                         <i data-lucide="search" class="w-6 h-6"></i>
                     </div>
-                    <div>
+                    <div class="relative z-10">
                         <h3 class="text-lg md:text-xl font-black text-red-400 uppercase">MÀNG LỌC TÀI LIỆU</h3>
                     </div>
-                    <p class="text-xs text-gray-300 leading-relaxed line-clamp-3">
+                    <p class="text-xs text-gray-300 leading-relaxed line-clamp-3 relative z-10">
                         Đánh giá toàn diện màng lọc dữ liệu học thuật của 10 công trình nghiên cứu dịch thuật số và AI chất lượng cao [10].
                     </p>
-                    <div class="flex items-center gap-2 text-cyan-400 text-xs font-bold uppercase tracking-widest pt-2">
+                    <div class="flex items-center gap-2 text-cyan-400 text-xs font-bold uppercase tracking-widest pt-2 relative z-10">
                         <span>Tra cứu dữ liệu báo</span>
                         <i data-lucide="chevrons-right" class="w-4 h-4"></i>
                     </div>
@@ -314,16 +411,18 @@
                     <div class="absolute -top-3 -right-3 px-3 py-1 bg-yellow-400 text-black font-black text-xs rounded-lg border-2 border-slate-950 uppercase font-comic">
                         TASK 03
                     </div>
-                    <div class="w-12 h-12 rounded-xl bg-yellow-500/10 border-2 border-yellow-500 flex items-center justify-center text-yellow-400">
+                    <!-- Corner Web Decorative SVG -->
+                    <svg class="absolute bottom-0 right-0 w-8 h-8 text-yellow-500 opacity-40 pointer-events-none z-10" viewBox="0 0 10 10"><path d="M0,10 L10,0 M0,7 L7,0 M0,4 L4,0 M3,10 L10,3 M6,10 L10,6" stroke="currentColor" stroke-width="0.3" fill="none"/></svg>
+                    <div class="w-12 h-12 rounded-xl bg-yellow-500/10 border-2 border-yellow-500 flex items-center justify-center text-yellow-400 relative z-10">
                         <i data-lucide="terminal" class="w-6 h-6"></i>
                     </div>
-                    <div>
+                    <div class="relative z-10">
                         <h3 class="text-lg md:text-xl font-black text-yellow-400 uppercase">KỸ THUẬT PROMPTING</h3>
                     </div>
-                    <p class="text-xs text-gray-300 leading-relaxed line-clamp-3">
+                    <p class="text-xs text-gray-300 leading-relaxed line-clamp-3 relative z-10">
                         Làm chủ công thức C-R-I-S-P, xây dựng 3 cấp độ Prompt cho 3 tác vụ học thuật ngôn ngữ then chốt [2].
                     </p>
-                    <div class="flex items-center gap-2 text-red-400 text-xs font-bold uppercase tracking-widest pt-2">
+                    <div class="flex items-center gap-2 text-red-400 text-xs font-bold uppercase tracking-widest pt-2 relative z-10">
                         <span>Kích hoạt Playground</span>
                         <i data-lucide="chevrons-right" class="w-4 h-4"></i>
                     </div>
@@ -334,16 +433,18 @@
                     <div class="absolute -top-3 -right-3 px-3 py-1 bg-yellow-400 text-black font-black text-xs rounded-lg border-2 border-slate-950 uppercase font-comic">
                         TASK 04
                     </div>
-                    <div class="w-12 h-12 rounded-xl bg-pink-500/10 border-2 border-pink-500 flex items-center justify-center text-pink-400">
+                    <!-- Corner Web Decorative SVG -->
+                    <svg class="absolute bottom-0 left-0 w-8 h-8 text-pink-500 opacity-40 pointer-events-none z-10" viewBox="0 0 10 10"><path d="M10,10 L0,0 M10,7 L3,0 M10,4 L4,0 M7,10 L0,3 M4,10 L0,6" stroke="currentColor" stroke-width="0.3" fill="none"/></svg>
+                    <div class="w-12 h-12 rounded-xl bg-pink-500/10 border-2 border-pink-500 flex items-center justify-center text-pink-400 relative z-10">
                         <i data-lucide="users" class="w-6 h-6"></i>
                     </div>
-                    <div>
+                    <div class="relative z-10">
                         <h3 class="text-lg md:text-xl font-black text-pink-400 uppercase">ĐỒNG TÁC TÁC VỤ</h3>
                     </div>
-                    <p class="text-xs text-gray-300 leading-relaxed line-clamp-3">
+                    <p class="text-xs text-gray-300 leading-relaxed line-clamp-3 relative z-10">
                         Quy trình hợp tác nhóm thiết kế Cẩm nang ChatGPT thông qua Trello, Docs, Meet và giải quyết xung đột trang [1, 2].
                     </p>
-                    <div class="flex items-center gap-2 text-cyan-400 text-xs font-bold uppercase tracking-widest pt-2">
+                    <div class="flex items-center gap-2 text-cyan-400 text-xs font-bold uppercase tracking-widest pt-2 relative z-10">
                         <span>Xem bảng tiến độ nhóm</span>
                         <i data-lucide="chevrons-right" class="w-4 h-4"></i>
                     </div>
@@ -354,16 +455,18 @@
                     <div class="absolute -top-3 -right-3 px-3 py-1 bg-yellow-400 text-black font-black text-xs rounded-lg border-2 border-slate-950 uppercase font-comic">
                         TASK 05
                     </div>
-                    <div class="w-12 h-12 rounded-xl bg-green-500/10 border-2 border-green-500 flex items-center justify-center text-green-400">
+                    <!-- Corner Web Decorative SVG -->
+                    <svg class="absolute top-0 right-0 w-8 h-8 text-green-400 opacity-40 pointer-events-none z-10" viewBox="0 0 10 10"><path d="M0,0 L10,10 M0,3 L7,10 M0,6 L4,10 M3,0 L10,7 M6,0 L10,4" stroke="currentColor" stroke-width="0.3" fill="none"/></svg>
+                    <div class="w-12 h-12 rounded-xl bg-green-500/10 border-2 border-green-500 flex items-center justify-center text-green-400 relative z-10">
                         <i data-lucide="palette" class="w-6 h-6"></i>
                     </div>
-                    <div>
+                    <div class="relative z-10">
                         <h3 class="text-lg md:text-xl font-black text-green-300 uppercase">KHOA HỌC TRỰC QUAN</h3>
                     </div>
-                    <p class="text-xs text-gray-300 leading-relaxed line-clamp-3">
+                    <p class="text-xs text-gray-300 leading-relaxed line-clamp-3 relative z-10">
                         Kết hợp quy trình Multi-AI Workflow vẽ Infographic "Smart AI" và tinh chỉnh lỗi text biến dạng thủ công [6].
                     </p>
-                    <div class="flex items-center gap-2 text-red-400 text-xs font-bold uppercase tracking-widest pt-2">
+                    <div class="flex items-center gap-2 text-red-400 text-xs font-bold uppercase tracking-widest pt-2 relative z-10">
                         <span>Phân rã luồng thiết kế</span>
                         <i data-lucide="chevrons-right" class="w-4 h-4"></i>
                     </div>
@@ -374,16 +477,18 @@
                     <div class="absolute -top-3 -right-3 px-3 py-1 bg-yellow-400 text-black font-black text-xs rounded-lg border-2 border-slate-950 uppercase font-comic">
                         TASK 06
                     </div>
-                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 border-2 border-purple-500 flex items-center justify-center text-purple-400">
+                    <!-- Corner Web Decorative SVG -->
+                    <svg class="absolute bottom-0 right-0 w-8 h-8 text-purple-500 opacity-40 pointer-events-none z-10" viewBox="0 0 10 10"><path d="M0,10 L10,0 M0,7 L7,0 M0,4 L4,0 M3,10 L10,3 M6,10 L10,6" stroke="currentColor" stroke-width="0.3" fill="none"/></svg>
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 border-2 border-purple-500 flex items-center justify-center text-purple-400 relative z-10">
                         <i data-lucide="shield-alert" class="w-6 h-6"></i>
                     </div>
-                    <div>
+                    <div class="relative z-10">
                         <h3 class="text-lg md:text-xl font-black text-purple-300 uppercase">LIÊM CHÍNH AI</h3>
                     </div>
-                    <p class="text-xs text-gray-300 leading-relaxed line-clamp-3">
+                    <p class="text-xs text-gray-300 leading-relaxed line-clamp-3 relative z-10">
                         Đối sánh chiến lược quản lý AI có kiểm soát giữa các trường đại học thành viên ĐHQGHN và 6 nguyên tắc liêm chính cá nhân [1, 2].
                     </p>
-                    <div class="flex items-center gap-2 text-cyan-400 text-xs font-bold uppercase tracking-widest pt-2">
+                    <div class="flex items-center gap-2 text-cyan-400 text-xs font-bold uppercase tracking-widest pt-2 relative z-10">
                         <span>Truy cập quy tắc</span>
                         <i data-lucide="chevrons-right" class="w-4 h-4"></i>
                     </div>
@@ -393,7 +498,12 @@
         </section>
 
         <!-- Reflections & Conclusion (Trang Tổng kết) -->
-        <section id="reflection" class="py-16 space-y-12">
+        <section id="reflection" class="py-16 space-y-12 relative">
+            <!-- Floating SFX "BOOM!" -->
+            <div class="absolute left-6 top-1/2 comic-sfx px-4 py-2 font-black text-sm select-none transform rotate-12">
+                BOOM!
+            </div>
+
             <div class="text-center space-y-4">
                 <h2 class="text-3xl md:text-5xl font-black tracking-wide uppercase text-glitch">ĐÚC KẾT SỨ MỆNH KHÔNG GIAN SỐ</h2>
                 <p class="text-gray-400 max-w-2xl mx-auto font-medium text-xs">
@@ -404,7 +514,8 @@
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 
                 <!-- Thuận lợi -->
-                <div class="p-6 rounded-2xl spider-glass border-2 border-green-500/30 shadow-comic-cyan space-y-4 transform rotate-0.5">
+                <div class="p-6 rounded-2xl spider-glass border-2 border-green-500/30 shadow-comic-cyan space-y-4 transform rotate-0.5 relative overflow-hidden">
+                    <svg class="absolute top-0 right-0 w-12 h-12 text-green-500 opacity-20 pointer-events-none" viewBox="0 0 10 10"><path d="M0,0 L10,10 M0,3 L7,10 M0,6 L4,10 M3,0 L10,7 M6,0 L10,4" stroke="currentColor" stroke-width="0.3" fill="none"/></svg>
                     <h3 class="text-xl md:text-2xl font-black text-green-400 uppercase tracking-wider flex items-center gap-2 text-glitch">
                         <i data-lucide="smile" class="w-6 h-6"></i>
                         THUẬN LỢI TÍCH HỢP
@@ -417,7 +528,8 @@
                 </div>
 
                 <!-- Khó khăn -->
-                <div class="p-6 rounded-2xl spider-glass border-2 border-red-500/30 shadow-comic-red space-y-4 transform -rotate-0.5">
+                <div class="p-6 rounded-2xl spider-glass border-2 border-red-500/30 shadow-comic-red space-y-4 transform -rotate-0.5 relative overflow-hidden">
+                    <svg class="absolute top-0 left-0 w-12 h-12 text-red-500 opacity-20 pointer-events-none" viewBox="0 0 10 10"><path d="M10,0 L0,10 M10,3 L3,10 M10,6 L6,10 M7,0 L0,7 M4,0 L0,4" stroke="currentColor" stroke-width="0.3" fill="none"/></svg>
                     <h3 class="text-xl md:text-2xl font-black text-red-400 uppercase tracking-wider flex items-center gap-2 text-glitch">
                         <i data-lucide="frown" class="w-6 h-6"></i>
                         THÁCH THỨC VŨ TRỤ
@@ -430,7 +542,8 @@
                 </div>
 
                 <!-- Bài học kinh nghiệm -->
-                <div class="p-6 rounded-2xl spider-glass border-2 border-yellow-500/30 shadow-comic-yellow space-y-4 transform rotate-0.5">
+                <div class="p-6 rounded-2xl spider-glass border-2 border-yellow-500/30 shadow-comic-yellow space-y-4 transform rotate-0.5 relative overflow-hidden">
+                    <svg class="absolute bottom-0 right-0 w-12 h-12 text-yellow-500 opacity-20 pointer-events-none" viewBox="0 0 10 10"><path d="M0,10 L10,0 M0,7 L7,0 M0,4 L4,0 M3,10 L10,3 M6,10 L10,6" stroke="currentColor" stroke-width="0.3" fill="none"/></svg>
                     <h3 class="text-xl md:text-2xl font-black text-yellow-400 uppercase tracking-wider flex items-center gap-2 text-glitch">
                         <i data-lucide="book-open" class="w-6 h-6"></i>
                         BÀI HỌC TU THỂ
@@ -527,7 +640,7 @@
 
                 <div class="flex items-center gap-3 text-cyan-400">
                     <i data-lucide="search" class="w-8 h-8"></i>
-                    <h2 class="text-3xl font-comic uppercase tracking-wider text-glitch">HỘI ĐỒNG TRA CỨU 10 TÀI LIỆU KHOA HỌC</h2>
+                    <h2 class="text-3xl font-black uppercase tracking-wider text-glitch">HỘI ĐỒNG TRA CỨU 10 TÀI LIỆU KHOA HỌC</h2>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 pt-4">
@@ -592,9 +705,9 @@
 
                 <div class="space-y-4 pt-4">
                     <div class="flex flex-wrap gap-2 border-b border-slate-800 pb-3 text-xs font-bold">
-                        <button onclick="selectPromptTask(1)" id="task-btn-1" class="px-3 py-1.5 rounded bg-yellow-500 text-black font-comic">TÁC VỤ 1: TÓM TẮT ĐỌC HIỂU</button>
-                        <button onclick="selectPromptTask(2)" id="task-btn-2" class="px-3 py-1.5 rounded bg-slate-800 text-gray-400 hover:text-white font-comic">TÁC VỤ 2: GIẢI THÍCH KHÁI NIỆM</button>
-                        <button onclick="selectPromptTask(3)" id="task-btn-3" class="px-3 py-1.5 rounded bg-slate-800 text-gray-400 hover:text-white font-comic">TÁC VỤ 3: TẠO BỘ TRẮC NGHIỆM</button>
+                        <button onclick="selectPromptTask(1)" id="task-btn-1" class="px-3 py-1.5 rounded bg-yellow-500 text-black">TÁC VỤ 1: TÓM TẮT ĐỌC HIỂU</button>
+                        <button onclick="selectPromptTask(2)" id="task-btn-2" class="px-3 py-1.5 rounded bg-slate-800 text-gray-400 hover:text-white">TÁC VỤ 2: GIẢI THÍCH KHÁI NIỆM</button>
+                        <button onclick="selectPromptTask(3)" id="task-btn-3" class="px-3 py-1.5 rounded bg-slate-800 text-gray-400 hover:text-white">TÁC VỤ 3: TẠO BỘ TRẮC NGHIỆM</button>
                     </div>
 
                     <!-- Sandbox thử nghiệm -->
