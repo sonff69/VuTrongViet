@@ -23,7 +23,7 @@
             overflow-x: hidden;
         }
 
-        /* Biến hóa Be Vietnam Pro 900 Italic thành phông Comic-Punk siêu chất và hoàn hảo diacritic */
+        /* Biến hóa Be Vietnam Pro thành phông Comic-Punk siêu chất */
         h1, h2, h3, h4, .font-comic {
             font-family: 'Be Vietnam Pro', sans-serif;
             font-weight: 900;
@@ -32,12 +32,12 @@
             text-transform: uppercase;
         }
 
-        /* Lớp phủ nền bảo vệ độ tương phản chữ, giữ nguyên màu sắc gốc của back.jpg */
+        /* Lớp phủ nền bảo vệ tương phản, giữ nguyên màu gốc của back.jpg */
         .spider-overlay {
-            background: radial-gradient(circle at 50% 50%, rgba(9, 6, 21, 0.75) 0%, rgba(4, 2, 9, 0.94) 100%);
+            background: radial-gradient(circle at 50% 50%, rgba(9, 6, 21, 0.76) 0%, rgba(4, 2, 9, 0.95) 100%);
         }
 
-        /* Hiệu ứng đa vũ trụ kính mờ */
+        /* Hiệu ứng kính mờ */
         .spider-glass {
             background: rgba(13, 9, 26, 0.78);
             backdrop-filter: blur(14px);
@@ -56,7 +56,7 @@
             box-shadow: 6px 6px 0px 0px #eab308;
         }
 
-        /* Thẻ Comic-Card tích hợp hoa văn Ben-Day dots */
+        /* Thẻ Comic-Card với hoa văn Ben-Day dots */
         .spider-card {
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 3px solid #0f172a;
@@ -97,7 +97,7 @@
             animation: break-multiverse 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
         }
 
-        /* Hiệu ứng nhiễu kỹ thuật số liên tục (Full sẵn không cần di chuột) */
+        /* Hiệu ứng nhiễu kỹ thuật số liên tục */
         @keyframes text-glitch-anim {
             0%, 100% { text-shadow: 2px -0.8px 0 #ef4444, -2px 0.8px 0 #06b6d4; }
             25% { text-shadow: -1.5px 1.5px 0 #ef4444, 1.5px -1.5px 0 #06b6d4; }
@@ -105,10 +105,10 @@
             75% { text-shadow: -2px -1.5px 0 #ef4444, 2px 1.5px 0 #06b6d4; }
         }
         .text-glitch {
-            animation: text-glitch-anim 0.7s infinite steps(2);
+            animation: text-glitch-anim 0.6s infinite steps(2);
         }
 
-        /* Hiệu ứng quét sóng đa vũ trụ quét từ trên xuống */
+        /* Quét sóng dọc màn hình */
         @keyframes scanline-sweep {
             0% { transform: translateY(-100vh); }
             100% { transform: translateY(100vh); }
@@ -142,6 +142,29 @@
         .benday-bg {
             background-image: radial-gradient(rgba(6, 182, 212, 0.1) 12%, transparent 13%);
             background-size: 10px 10px;
+        }
+
+        /* Hiệu ứng nổi bọt khi click chuột (Interactive Click SFX) */
+        .click-sfx {
+            position: fixed;
+            pointer-events: none;
+            font-family: 'Be Vietnam Pro', sans-serif;
+            font-weight: 900;
+            font-style: italic;
+            text-transform: uppercase;
+            font-size: 1.25rem;
+            color: #000;
+            background: #eab308;
+            border: 3px solid #000;
+            padding: 4px 10px;
+            box-shadow: 3px 3px 0px #ef4444;
+            transform: translate(-50%, -50%) rotate(-10deg) scale(1);
+            animation: click-sfx-anim 0.5s ease-out forwards;
+            z-index: 100;
+        }
+        @keyframes click-sfx-anim {
+            0% { opacity: 1; transform: translate(-50%, -50%) rotate(-10deg) scale(0.6); }
+            100% { opacity: 0; transform: translate(-50%, -100%) rotate(-15deg) scale(1.3); }
         }
     </style>
 </head>
@@ -272,7 +295,7 @@
             <div class="text-center space-y-4">
                 <h2 class="text-3xl md:text-5xl font-comic tracking-wide uppercase text-glitch text-yellow-400">BẢN CHỈ HƯỚNG MỤC TIÊU SỨ MỆNH</h2>
                 <p class="text-gray-400 max-w-2xl mx-auto text-xs md:text-sm font-medium">
-                    Portfolio này không chỉ đơn thuần là nơi lưu trữ bài tập, mà là một không gian có hệ thống để mình thực hiện các sứ mệnh cốt lõi [1]:
+                    Portfolio này không chỉ đơn thuần là nơi lưu trữ bài tập, mà là một không gian có hệ thống để mình thực hiện các sứ mệnh cốt lõi:
                 </p>
             </div>
 
@@ -284,7 +307,7 @@
                     </div>
                     <h3 class="text-lg md:text-xl font-black text-cyan-300 uppercase">HỆ THỐNG HOÁ TRI THỨC SỐ</h3>
                     <p class="text-xs text-gray-300 leading-relaxed">
-                        Tích hợp và hệ thống hóa toàn bộ kiến thức, kỹ năng đã được mài giũa từ môn học "Nhập môn Công nghệ số và Ứng dụng Trí tuệ nhân tạo" [1].
+                        Tích hợp và hệ thống hóa toàn bộ kiến thức, kỹ năng đã được mài giũa từ môn học "Nhập môn Công nghệ số và Ứng dụng Trí tuệ nhân tạo".
                     </p>
                 </div>
 
@@ -295,7 +318,7 @@
                     </div>
                     <h3 class="text-lg md:text-xl font-black text-red-300 uppercase">CHỨNG MINH NĂNG LỰC BẢN THÂN</h3>
                     <p class="text-xs text-gray-300 leading-relaxed">
-                        Xây dựng công cụ hữu ích nhằm giới thiệu năng lực số của bản thân đến thầy cô, bạn bè và nhà tuyển dụng tiềm năng trong tương lai [1].
+                        Xây dựng công cụ hữu ích nhằm giới thiệu năng lực số của bản thân đến thầy cô, bạn bè và nhà tuyển dụng tiềm năng trong tương lai.
                     </p>
                 </div>
 
@@ -306,7 +329,7 @@
                     </div>
                     <h3 class="text-lg md:text-xl font-black text-yellow-300 uppercase">TIÊN PHONG LIÊM CHÍNH AI</h3>
                     <p class="text-xs text-gray-300 leading-relaxed">
-                        Khẳng định vị thế và trách nhiệm học thuật thông qua việc minh bạch hóa tối đa các câu lệnh (prompting) và quy trình ứng dụng AI có kiểm soát [1, 2].
+                        Khẳng định vị thế và trách nhiệm học thuật thông qua việc minh bạch hóa tối đa các câu lệnh (prompting) và quy trình ứng dụng AI có kiểm soát.
                     </p>
                 </div>
             </div>
@@ -371,7 +394,7 @@
                         <h3 class="text-lg md:text-xl font-black text-cyan-300 uppercase text-glitch">HỆ THỐNG FILE SỐ</h3>
                     </div>
                     <p class="text-xs text-gray-300 leading-relaxed line-clamp-3 relative z-10">
-                        Thực hiện 12 bước sát hạch thao tác tệp và cấu trúc hóa hệ thống thư mục cây logic chuẩn chỉ và ngăn nắp [4].
+                        Thực hiện 12 bước sát hạch thao tác tệp và cấu trúc hóa hệ thống thư mục cây logic chuẩn chỉ và ngăn nắp.
                     </p>
                     <div class="flex items-center gap-2 text-red-400 text-xs font-bold uppercase tracking-widest pt-2 relative z-10">
                         <span>Chạy mô phỏng tệp</span>
@@ -393,7 +416,7 @@
                         <h3 class="text-lg md:text-xl font-black text-red-400 uppercase text-glitch">MÀNG LỌC TÀI LIỆU</h3>
                     </div>
                     <p class="text-xs text-gray-300 leading-relaxed line-clamp-3 relative z-10">
-                        Đánh giá toàn diện màng lọc dữ liệu học thuật của 10 công trình nghiên cứu dịch thuật số và AI chất lượng cao [10].
+                        Đánh giá toàn diện màng lọc dữ liệu học thuật của 10 công trình nghiên cứu dịch thuật số và AI chất lượng cao.
                     </p>
                     <div class="flex items-center gap-2 text-cyan-400 text-xs font-bold uppercase tracking-widest pt-2 relative z-10">
                         <span>Tra cứu dữ liệu báo</span>
@@ -415,11 +438,11 @@
                         <h3 class="text-lg md:text-xl font-black text-yellow-400 uppercase text-glitch">KỸ THUẬT PROMPTING</h3>
                     </div>
                     <p class="text-xs text-gray-300 leading-relaxed line-clamp-3 relative z-10">
-                        Làm chủ công thức C-R-I-S-P, xây dựng 3 cấp độ Prompt cho 3 tác vụ học thuật ngôn ngữ then chốt [2].
+                        Làm chủ công thức C-R-I-S-P, xây dựng 3 cấp độ Prompt cho 3 tác vụ học thuật ngôn ngữ then chốt.
                     </p>
                     <div class="flex items-center gap-2 text-red-400 text-xs font-bold uppercase tracking-widest pt-2 relative z-10">
                         <span>Kích hoạt Playground</span>
-                        <i data-lucide="chevrons-right" class="w-4 h-4 animate-bounce"></i>
+                        <i data-lucide="chevrons-right" class="w-4 h-4 animate-pulse"></i>
                     </div>
                 </div>
 
@@ -437,7 +460,7 @@
                         <h3 class="text-lg md:text-xl font-black text-pink-400 uppercase text-glitch">ĐỒNG TÁC TÁC VỤ</h3>
                     </div>
                     <p class="text-xs text-gray-300 leading-relaxed line-clamp-3 relative z-10">
-                        Quy trình hợp tác nhóm thiết kế Cẩm nang ChatGPT thông qua Trello, Docs, Meet và giải quyết xung đột trang [1, 2].
+                        Quy trình hợp tác nhóm thiết kế Cẩm nang ChatGPT thông qua Trello, Docs, Meet và giải quyết xung đột trang.
                     </p>
                     <div class="flex items-center gap-2 text-cyan-400 text-xs font-bold uppercase tracking-widest pt-2 relative z-10">
                         <span>Xem bảng tiến độ nhóm</span>
@@ -459,7 +482,7 @@
                         <h3 class="text-lg md:text-xl font-black text-green-300 uppercase text-glitch">KHOA HỌC TRỰC QUAN</h3>
                     </div>
                     <p class="text-xs text-gray-300 leading-relaxed line-clamp-3 relative z-10">
-                        Kết hợp quy trình Multi-AI Workflow vẽ Infographic "Smart AI" và tinh chỉnh lỗi text biến dạng thủ công [6].
+                        Kết hợp quy trình Multi-AI Workflow vẽ Infographic "Smart AI" và tinh chỉnh lỗi text biến dạng thủ công.
                     </p>
                     <div class="flex items-center gap-2 text-red-400 text-xs font-bold uppercase tracking-widest pt-2 relative z-10">
                         <span>Phân rã luồng thiết kế</span>
@@ -481,7 +504,7 @@
                         <h3 class="text-lg md:text-xl font-black text-purple-300 uppercase text-glitch">LIÊM CHÍNH AI</h3>
                     </div>
                     <p class="text-xs text-gray-300 leading-relaxed line-clamp-3 relative z-10">
-                        Đối sánh chiến lược quản lý AI có kiểm soát giữa các trường đại học thành viên ĐHQGHN và 6 nguyên tắc liêm chính cá nhân [1, 2].
+                        Đối sánh chiến lược quản lý AI có kiểm soát giữa các trường đại học thành viên ĐHQGHN và 6 nguyên tắc liêm chính cá nhân.
                     </p>
                     <div class="flex items-center gap-2 text-cyan-400 text-xs font-bold uppercase tracking-widest pt-2 relative z-10">
                         <span>Truy cập quy tắc</span>
@@ -500,9 +523,9 @@
             </div>
 
             <div class="text-center space-y-4">
-                <h2 class="text-3xl md:text-5xl font-black tracking-wide uppercase text-glitch">CHÌ SỐ SỨ MỆNH NHÌN LẠI</h2>
+                <h2 class="text-3xl md:text-5xl font-black tracking-wide uppercase text-glitch">ĐÚC KẾT SỨ MỆNH KHÔNG GIAN SỐ</h2>
                 <p class="text-gray-400 max-w-2xl mx-auto font-medium text-xs">
-                    Một hành trình không phải để thể hiện thành tích tuyệt đối, mà là nỗ lực tự hoàn thiện năng lực số từng ngày [3].
+                    Chiêm nghiệm sâu sắc của bản thân sau 1 tuần lăn lộn với thực tế thao tác công nghệ.
                 </p>
             </div>
 
@@ -516,9 +539,9 @@
                         THUẬN LỢI TÍCH HỢP
                     </h3>
                     <ul class="text-xs text-gray-300 space-y-2 list-disc pl-4 leading-relaxed">
-                        <li>Được rèn luyện trong môi trường ULIS năng động, nơi khuyến khích sinh viên "chuyển đổi chủ động - ứng dụng có kiểm soát" [1].</li>
-                        <li>Hệ sinh thái AI tạo sinh đa dạng (ChatGPT, Gemini, Midjourney) hỗ trợ giải phóng sức lao động thủ công cực lớn ngay lập tức [6].</li>
-                        <li>Các công cụ cộng tác trực quan như Trello, Google Docs giúp dòng chảy công việc nhóm thông suốt và minh bạch hoàn toàn [1, 2].</li>
+                        <li>Được rèn luyện trong môi trường ULIS năng động, nơi khuyến khích sinh viên "chuyển đổi chủ động - ứng dụng có kiểm soát".</li>
+                        <li>Hệ sinh thái AI tạo sinh đa dạng (ChatGPT, Gemini, Midjourney) hỗ trợ giải phóng sức lao động thủ công cực lớn ngay lập tức.</li>
+                        <li>Các công cụ cộng tác trực quan như Trello, Google Docs giúp dòng chảy công việc nhóm thông suốt và minh bạch hoàn toàn.</li>
                     </ul>
                 </div>
 
@@ -530,9 +553,9 @@
                         THÁCH THỨC VŨ TRỤ
                     </h3>
                     <ul class="text-xs text-gray-300 space-y-2 list-disc pl-4 leading-relaxed">
-                        <li><strong class="text-white">Lỗi ảo giác (Hallucination):</strong> AI thường xuyên tự vẽ ra các dữ liệu sai lệch hoặc chế tác các đường link học thuật không có thật [9].</li>
-                        <li><strong class="text-white">Lệch pha thời gian:</strong> Sự bất đồng bộ (asynchronous) trong thời gian biểu của các thành viên trong nhóm dễ gây trễ hạn chót công việc [3].</li>
-                        <li><strong class="text-white">Xung đột kỹ thuật thô:</strong> Lỗi xê dịch trang nghiêm trọng khi cùng upload tệp đồ họa dung lượng lớn lên đám mây lưu trữ Google Docs [3].</li>
+                        <li><strong class="text-white">Lỗi ảo giác (Hallucination):</strong> AI thường xuyên tự vẽ ra các dữ liệu sai lệch hoặc chế tác các đường link học thuật không có thật.</li>
+                        <li><strong class="text-white">Lệch pha thời gian:</strong> Sự bất đồng bộ (asynchronous) trong thời gian biểu của các thành viên trong nhóm dễ gây trễ hạn chót công việc.</li>
+                        <li><strong class="text-white">Xung đột kỹ thuật thô:</strong> Lỗi xê dịch trang nghiêm trọng khi cùng upload tệp đồ họa dung lượng lớn lên đám mây lưu trữ Google Docs.</li>
                     </ul>
                 </div>
 
@@ -544,9 +567,9 @@
                         BÀI HỌC TU THỂ
                     </h3>
                     <ul class="text-xs text-gray-300 space-y-2 list-disc pl-4 leading-relaxed">
-                        <li><strong class="text-white">Kiểm chứng chéo là bắt buộc:</strong> Tuyệt đối không dùng thông tin gốc từ AI nếu chưa kiểm định chéo với các nguồn học thuật uy tín như Turnitin AI hay Google Scholar [3].</li>
-                        <li><strong class="text-white">Quy chuẩn lịch sự:</strong> Thiết lập rõ ràng các khoảng thời gian ghim thông báo (pin message) để giải quyết dứt điểm rào cản bất đồng bộ [3].</li>
-                        <li><strong class="text-white">Kỷ luật tự tôn học thuật:</strong> AI chỉ là trợ lý đắc lực giúp tối ưu thời gian viết dàn bài, giữ 80% năng lượng của bản thân cho việc phản biện sáng tạo thực thụ [1, 2].</li>
+                        <li><strong class="text-white">Kiểm chứng chéo là bắt buộc:</strong> Tuyệt đối không dùng thông tin gốc từ AI nếu chưa kiểm định chéo với các nguồn học thuật uy tín như Turnitin AI hay Google Scholar.</li>
+                        <li><strong class="text-white">Quy chuẩn lịch sự:</strong> Thiết lập rõ ràng các khoảng thời gian ghim thông báo (pin message) để giải quyết dứt điểm rào cản bất đồng bộ.</li>
+                        <li><strong class="text-white">Kỷ luật tự tôn học thuật:</strong> AI chỉ là trợ lý đắc lực giúp tối ưu thời gian viết dàn bài, giữ 80% năng lượng của bản thân cho việc phản biện sáng tạo thực thụ.</li>
                     </ul>
                 </div>
 
@@ -577,18 +600,18 @@
                     <div class="lg:col-span-5 space-y-4 max-h-[450px] overflow-y-auto pr-2 text-xs">
                         <h3 class="text-sm font-bold text-cyan-300 uppercase">12 bước tác vụ thực tế của Việt</h3>
                         <div class="space-y-2 text-gray-400 leading-relaxed">
-                            <p><strong class="text-white">Bước 1:</strong> Mở File Explorer bằng phím tắt <code class="bg-slate-950 px-1 py-0.5 rounded text-red-400">Windows + E</code> [4].</p>
-                            <p><strong class="text-white">Bước 2:</strong> Nhấp vào <code class="text-white">This PC</code> bên trái, truy cập ổ đĩa không phải hệ thống (ổ D:) [4].</p>
-                            <p><strong class="text-white">Bước 3:</strong> Tạo thư mục gốc <code class="text-white">ThucHanh_VuTrongViet</code> bằng nhấp chuột phải -> New -> Folder [4].</p>
-                            <p><strong class="text-white">Bước 4:</strong> Nhấp đúp chuột để vào sâu bên trong thư mục vừa tạo [4].</p>
-                            <p><strong class="text-white">Bước 5:</strong> Tạo tệp văn bản <code class="text-white">GhiChu.txt</code> (Nhấp chuột phải -> New -> Text Document) [4].</p>
-                            <p><strong class="text-white">Bước 6:</strong> Đổi tên tệp văn bản thành <code class="text-white">GhiChuQuanTrong.txt</code> bằng phím F2 hoặc Rename [4].</p>
-                            <p><strong class="text-white">Bước 7:</strong> Tạo thư mục con mới đặt tên là <code class="text-white">TaiLieu</code> ngay bên cạnh file [4].</p>
-                            <p><strong class="text-white">Bước 8:</strong> Sao chép file <code class="text-white">GhiChuQuanTrong.txt</code> bằng <code class="bg-slate-950 px-1 py-0.5 rounded text-red-400">Ctrl + C</code> [4].</p>
-                            <p><strong class="text-white">Bước 9:</strong> Nhấp đúp vào thư mục <code class="text-white">TaiLieu</code> và dán file (<code class="bg-slate-950 px-1 py-0.5 rounded text-red-400">Ctrl + V</code>) tạo một bản sao [4].</p>
-                            <p><strong class="text-white">Bước 10:</strong> Tạo file <code class="text-white">DiChuyen.txt</code> bên ngoài, nhấp chuột phải chọn Cut và di chuyển dán vào trong thư mục <code class="text-white">TaiLieu</code> [4].</p>
-                            <p><strong class="text-white">Bước 11:</strong> Thực hiện xóa tệp <code class="text-white">GhiChuQuanTrong.txt</code> bằng nhấp chuột phải -> Delete chuyển vào Thùng rác [4].</p>
-                            <p><strong class="text-white">Bước 12:</strong> Khôi phục file từ <code class="text-white">Recycle Bin</code> trở lại thư mục ban đầu [4].</p>
+                            <p><strong class="text-white">Bước 1:</strong> Mở File Explorer bằng phím tắt <code class="bg-slate-950 px-1 py-0.5 rounded text-red-400">Windows + E</code>.</p>
+                            <p><strong class="text-white">Bước 2:</strong> Nhấp vào <code class="text-white">This PC</code> bên trái, truy cập ổ đĩa không phải hệ thống (ổ D:).</p>
+                            <p><strong class="text-white">Bước 3:</strong> Tạo thư mục gốc <code class="text-white">ThucHanh_VuTrongViet</code> bằng nhấp chuột phải -> New -> Folder.</p>
+                            <p><strong class="text-white">Bước 4:</strong> Nhấp đúp chuột để vào sâu bên trong thư mục vừa tạo.</p>
+                            <p><strong class="text-white">Bước 5:</strong> Tạo tệp văn bản <code class="text-white">GhiChu.txt</code> (Nhấp chuột phải -> New -> Text Document).</p>
+                            <p><strong class="text-white">Bước 6:</strong> Đổi tên tệp văn bản thành <code class="text-white">GhiChuQuanTrong.txt</code> bằng phím F2 hoặc Rename.</p>
+                            <p><strong class="text-white">Bước 7:</strong> Tạo thư mục con mới đặt tên là <code class="text-white">TaiLieu</code> ngay bên cạnh file.</p>
+                            <p><strong class="text-white">Bước 8:</strong> Sao chép file <code class="text-white">GhiChuQuanTrong.txt</code> bằng <code class="bg-slate-950 px-1 py-0.5 rounded text-red-400">Ctrl + C</code>.</p>
+                            <p><strong class="text-white">Bước 9:</strong> Nhấp đúp vào thư mục <code class="text-white">TaiLieu</code> và dán file (<code class="bg-slate-950 px-1 py-0.5 rounded text-red-400">Ctrl + V</code>) tạo một bản sao.</p>
+                            <p><strong class="text-white">Bước 10:</strong> Tạo file <code class="text-white">DiChuyen.txt</code> bên ngoài, nhấp chuột phải chọn Cut và di chuyển dán vào trong thư mục <code class="text-white">TaiLieu</code>.</p>
+                            <p><strong class="text-white">Bước 11:</strong> Thực hiện xóa tệp <code class="text-white">GhiChuQuanTrong.txt</code> bằng nhấp chuột phải -> Delete chuyển vào Thùng rác.</p>
+                            <p><strong class="text-white">Bước 12:</strong> Khôi phục file từ <code class="text-white">Recycle Bin</code> trở lại thư mục ban đầu.</p>
                         </div>
                     </div>
 
@@ -635,7 +658,7 @@
 
                 <div class="flex items-center gap-3 text-cyan-400">
                     <i data-lucide="search" class="w-8 h-8"></i>
-                    <h2 class="text-3xl font-black uppercase tracking-wider text-glitch">HỘI ĐỒNG TRA CỨU 10 TÀI LIỆU KHOA HỌC</h2>
+                    <h2 class="text-3xl font-comic uppercase tracking-wider text-glitch">HỘI ĐỒNG TRA CỨU 10 TÀI LIỆU KHOA HỌC</h2>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 pt-4">
@@ -705,6 +728,26 @@
                         <button onclick="selectPromptTask(3)" id="task-btn-3" class="px-3 py-1.5 rounded bg-slate-800 text-gray-400 hover:text-white">TÁC VỤ 3: TẠO BỘ TRẮC NGHIỆM</button>
                     </div>
 
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs bg-slate-950/40 p-4 rounded-xl border border-slate-900">
+                        <div class="space-y-3">
+                            <h3 class="text-sm font-bold text-yellow-400 uppercase">Ứng dụng công thức C-R-I-S-P</h3>
+                            <div class="space-y-2 text-gray-300 leading-relaxed">
+                                <p><strong class="text-white">Context (Bối cảnh):</strong> "Tôi là sinh viên năm nhất đang học môn Writing 1..."</p>
+                                <p><strong class="text-white">Role (Vai trò):</strong> "Bạn là một người chấm điểm bài luận có kinh nghiệm..."</p>
+                                <p><strong class="text-white">Instruction (Chỉ thị):</strong> "Hãy tìm lỗi ngữ pháp và đề xuất cách sửa..."</p>
+                                <p><strong class="text-white">Style (Văn phong):</strong> "Giải thích bằng tiếng Việt nhưng giữ nguyên các ví dụ bằng tiếng Anh..."</p>
+                                <p><strong class="text-white">Parameter (Ràng buộc):</strong> "Hãy chỉ ra tối đa 3 lỗi lớn nhất..."</p>
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            <h3 class="text-sm font-bold text-cyan-300 uppercase">Mẹo nhỏ học tiếng Anh với AI</h3>
+                            <div class="space-y-2 text-gray-400 leading-relaxed">
+                                <p>• <strong class="text-gray-200">Luôn yêu cầu "Collocation" và "Ví dụ":</strong> Thay vì chỉ dịch từ, hãy bảo: "Cho tôi biết từ này hay đi với động từ/giới từ nào (Collocation)".</p>
+                                <p>• <strong class="text-gray-200">Nhờ AI chấm bài viết:</strong> Thay vì bảo "Sửa bài này cho tôi", hãy nói: "Hãy chỉ ra các lỗi sai trong đoạn văn sau và để TÔI tự sửa trước, sau đó mới đưa đáp án" để nhớ lâu hơn.</p>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Sandbox thử nghiệm -->
                     <div class="p-5 rounded-2xl bg-black/60 border-2 border-slate-800 space-y-4">
                         <div class="flex items-center justify-between border-b border-slate-800 pb-2 text-xs">
@@ -755,13 +798,22 @@
                     <div class="lg:col-span-4 space-y-4 text-xs">
                         <h3 class="text-sm font-bold text-yellow-400 uppercase">Quy trình vận hành nhóm của Việt</h3>
                         <p class="text-gray-300 leading-relaxed">
-                            Trong dự án viết cẩm nang, mình đảm nhận việc nghiên cứu sâu về: <strong class="text-white">"Các rủi ro đạo đức, đạo văn và thông tin ảo giác của sinh viên năm nhất khi sử dụng ChatGPT"</strong>. 
+                            Trong dự án viết cẩm nang, mình đảm nhận việc nghiên cứu sâu về: <strong class="text-white">"Nghiên cứu các rủi ro đạo đức (đạo văn, thông tin sai lệch) khi sinh viên dùng ChatGPT"</strong>. 
                         </p>
                         <p class="text-gray-300 leading-relaxed">
-                            Để bảo đảm tính minh bạch, mình tự thiết kế các thẻ tác vụ trên Trello và liên tục đồng bộ hóa trạng thái hoàn thiện cùng nhóm trưởng qua các phiên họp trực tiếp trên Gg Meet [1, 2].
+                            Để bảo đảm tính minh bạch, mình tự thiết kế các thẻ tác vụ trên Trello và liên tục đồng bộ hóa trạng thái hoàn thiện cùng nhóm trưởng qua các phiên họp trực tiếp trên Gg Meet. Mình soạn thảo trực tiếp chương: <strong class="text-white">"Chương 3: Đạo đức học thuật và những lưu ý khi sử dụng AI"</strong> trên Google Docs.
                         </p>
-                        <div class="p-3 rounded-lg bg-pink-500/5 border border-pink-500/10 leading-relaxed text-pink-300 font-medium">
-                            Hãy nhấp vào các thẻ công việc bên phải để trực tiếp mô phỏng hành động dịch chuyển trạng thái công việc!
+                        <div class="p-3 bg-red-950/20 rounded-xl border border-red-500/20 text-xs text-gray-300">
+                            <span class="font-bold text-red-400 block mb-1">Thử thách 1: Phản hồi bất đồng bộ (Asynchronous)</span>
+                            Khi mình tag các thành viên trên Discord hỏi ý kiến về nội dung bài viết, các bạn không online cùng lúc nên thời gian chờ kéo dài, ảnh hưởng tiến độ.
+                            <span class="font-bold text-green-400 block mt-2">Giải pháp của mình:</span>
+                            Ghim tin nhắn quan trọng (Pin) kèm chuẩn đặt lịch hẹn lịch sự: "Mình ghim câu hỏi ở đây, các bạn phản hồi giúp mình trước 21h tối nay nhé" để mọi người chủ động sắp xếp.
+                        </div>
+                        <div class="p-3 bg-red-950/20 rounded-xl border border-red-500/20 text-xs text-gray-300">
+                            <span class="font-bold text-red-400 block mb-1">Thử thách 2: Xung đột định dạng trên Google Docs</span>
+                            Khi hai thành viên cùng chèn ảnh minh họa về ChatGPT vào file cùng một lúc, định dạng trang bị xô lệch nghiêm trọng.
+                            <span class="font-bold text-green-400 block mt-2">Giải pháp của mình:</span>
+                            Chủ động tạo một bảng (Table) ẩn, chia sẵn các ô cho từng người chèn ảnh và chữ vào đúng ô của mình để giải quyết triệt để lỗi nhảy trang.
                         </div>
                     </div>
 
@@ -813,17 +865,25 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
                     <div class="space-y-4 text-xs md:text-sm text-gray-300">
-                        <h3 class="text-lg font-bold text-green-300">Tạo tác tác phẩm "Smart AI"</h3>
+                        <h3 class="text-lg font-bold text-green-300">Quy trình sáng tạo 3 giai đoạn</h3>
                         <p>
-                            Sản phẩm: Infographic <strong class="text-white">"Kỷ nguyên mới: Ứng dụng AI trong Học tập Ngôn ngữ"</strong> [6].
+                            Dự án: Thiết kế bộ Infographic <strong class="text-white">"Kỷ nguyên mới: Ứng dụng AI trong Học tập Ngôn ngữ"</strong>. Quy trình phối hợp đa tầng công cụ AI chuyên sâu của Việt:
                         </p>
-                        <ol class="space-y-2 list-decimal pl-4 text-gray-400 text-xs leading-relaxed">
-                            <li><strong class="text-gray-200">Claude/Gemini:</strong> Viết sườn văn bản ngắn gọn, giới hạn tối đa 30 từ để tối ưu khoảng trống.</li>
-                            <li><strong class="text-gray-200">Midjourney v6:</strong> Thiết lập dòng lệnh vẽ ảnh não bộ neon cybernetic siêu thực.</li>
-                            <li><strong class="text-gray-200">Canva Magic:</strong> Phân phối bố cục lưới và sắp đặt lưới cơ bản.</li>
-                        </ol>
+                        <div class="space-y-3 bg-slate-950/40 p-3 rounded-lg border border-slate-900 text-xs">
+                            <p><strong class="text-cyan-400 block mb-1">Giai đoạn 1: Nghiên cứu nội dung và Kiến trúc thông tin (Gemini)</strong>
+                            - Prompt 1 (Chưa hiệu quả): "Tôi đang làm dự án về AI trong học ngôn ngữ. Hãy thu thập thông tin..." -> Kết quả: Dài dòng gần 600 từ.<br>
+                            - Prompt 2: "Hãy chuyển thành dạng danh sách (bullet points) cho 3 phần..." -> Kết quả: Vẫn còn dài 60-80 từ.<br>
+                            - Prompt 3 (Giới hạn định lượng nghiêm ngặt): "Vẫn còn quá nhiều chữ... Cô đọng mỗi mục tối đa đúng 30 từ, sử dụng cấu trúc: 1 slogan ngắn giật gân + 1 câu giải thích lõi. Giữ lại thuật ngữ Adaptive Learning, LLMs."<br>
+                            - Prompt 4 (Tối ưu hóa cấu trúc): "Định dạng lại bằng Markdown. Thêm 1 từ khóa tiếng Anh viết hoa và gợi ý 1 biểu tượng (Icon) phù hợp..." -> Kết quả: Hoàn chỉnh biểu tượng 💬, 🎯, ✍, 📈.</p>
+                            
+                            <p><strong class="text-red-400 block mb-1">Giai đoạn 2: Sáng tạo Tài sản Thị giác nghệ thuật (Midjourney v6)</strong>
+                            - Prompt: <code class="bg-black/60 px-1 py-0.5 rounded text-[10px] text-pink-400">/imagine a futuristic holographic human brain woven from neon glowing language alphabets, letters from different languages floating around, cybernetic dark background, tech aesthetics, cinematic lighting, ultra-detailed, 8k resolution, aspect ratio 16:9 --ar 16:9 --style raw --v 6.0</code></p>
+
+                            <p><strong class="text-yellow-400 block mb-1">Giai đoạn 3: Định hình bố cục và hoàn thiện thiết kế (Canva Magic Studio)</strong>
+                            - Prompt: <code class="bg-black/60 px-1 py-0.5 rounded text-[10px] text-yellow-400">"Tech infographic template, dark theme, neon green and slate gray accents, minimalist style, language learning concept."</code></p>
+                        </div>
                         <p class="p-3 rounded-lg bg-green-950/20 border border-green-500/20 text-xs leading-relaxed text-gray-300">
-                            <strong class="text-green-300">Nhân lực định hình thẩm mỹ (60%):</strong> Do AI luôn tạo ra các chữ cái rác méo mó vô nghĩa, mình tiến hành can thiệp xóa rác ký tự thô, chuyển đổi font Urbanist/Poppins việt hóa mượt mà và phân cấp không gian white space vàng [6].
+                            <strong class="text-green-300">Sự can thiệp của con người (Chiếm 60% khối lượng):</strong> Do AI tạo hình ảnh thường gặp lỗi kết cấu chữ (méo chữ, ngôn ngữ giả), mình đưa bức ảnh vào phần mềm đồ họa xóa bỏ ký tự rác, cân bằng dải sáng (Color Grading). Phá vỡ bố cục rập khuôn của Canva, sắp xếp text theo tỷ lệ vàng 1:1.618, thay phông mặc định sang Urbanist và Poppins việt hóa mượt mà, đổi icon đồng bộ nét vẽ Vector.
                         </p>
                     </div>
 
@@ -843,7 +903,7 @@
                                         <p class="text-[8px] text-gray-300">Quét lỗ hổng kiến thức để dệt lộ trình học đo ni đóng giày.</p>
                                     </div>
                                 </div>
-                                <span class="text-[8px] text-gray-500 text-center block">Thiết kế bởi Việt với sự hỗ trợ của AI</span>
+                                <span class="text-[8px] text-gray-500 text-center block">Nội dung và hình ảnh có sự hỗ trợ kỹ thuật từ hệ sinh thái Generative AI, được biên tập và hoàn thiện bởi tác giả</span>
                             </div>
                         </div>
                     </div>
@@ -901,6 +961,15 @@
                             <div>• <strong class="text-gray-200">Cập nhật đạo đức liên tục:</strong> Tuân thủ mọi quy định AI mới nhất của đại học.</div>
                         </div>
                     </div>
+
+                    <div class="p-5 rounded-2xl bg-slate-950/40 border-2 border-slate-900 space-y-3 text-xs">
+                        <h3 class="text-sm font-bold text-yellow-400 uppercase">Thực hành tác vụ học tập có AI hỗ trợ hợp lý</h3>
+                        <p class="leading-relaxed">
+                            <strong class="text-white">Nhiệm vụ:</strong> Phác thảo dàn ý và tìm kiếm luận cứ cho bài luận: <span class="text-pink-400 italic">"Liệu phương thức thanh toán trực tuyến có khiến tiền mặt trở nên lỗi thời trong tương lai gần tại Việt Nam?"</span>.<br>
+                            - <strong class="text-white">Prompt đã dùng:</strong> "Hãy đóng vai một chuyên gia kinh tế vĩ mô, lập một dàn ý chi tiết gồm 4 phần (Mở bài, Thực trạng tại Việt Nam, Luận điểm phản biện về tính bền vững của tiền mặt, Kết luận). Đồng thời, gợi ý 3 số liệu thực tế cần tìm kiếm..."<br>
+                            - <strong class="text-white">Đánh giá và Tinh chỉnh sáng tạo:</strong> Dàn ý AI cung cấp có logic tốt nhưng số liệu gợi ý ở dạng chung chung, không có mốc thời gian và nguồn cụ thể (dễ phạm lỗi ngụy tạo dữ liệu). Việt tiến hành <span class="text-cyan-400 font-bold">thay thế dữ liệu thủ công từ các nguồn chính thống</span>: Thay số liệu chung bằng số liệu chính xác của Ngân hàng Nhà nước Việt Nam về tỷ lệ thanh toán COD vẫn chiếm trên 60% trong thương mại điện tử, và báo cáo của Tổng cục Thống kê về hạ tầng số tại vùng nông thôn.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -940,6 +1009,25 @@
             modal.classList.add('hidden');
             document.body.classList.remove('overflow-hidden');
         }
+
+        // ==================== HIỆU ỨNG TRỰC QUAN CLICK CHUỘT COMIC SFX ====================
+        const sfxWords = ["THWIP!", "BOOM!", "POW!", "ZAP!", "KABOOM!", "SLAM!", "CRASH!"];
+        window.addEventListener('click', (e) => {
+            // Không kích hoạt sfx khi click các nút bấm hoặc tệp tin tránh gây rối mắt
+            if (e.target.closest('button') || e.target.closest('a') || e.target.closest('.cursor-pointer')) return;
+
+            const word = sfxWords[Math.floor(Math.random() * sfxWords.length)];
+            const div = document.createElement('div');
+            div.className = 'click-sfx';
+            div.textContent = word;
+            div.style.left = `${e.clientX}px`;
+            div.style.top = `${e.clientY}px`;
+            document.body.appendChild(div);
+
+            setTimeout(() => {
+                div.remove();
+            }, 500);
+        });
 
         // ==================== KHỞI CHẠY TƠ NHỆN CANVAS ĐA VŨ TRỤ TƯƠNG TÁC ====================
         const canvas = document.getElementById('spider-web-canvas');
@@ -1052,7 +1140,7 @@
                 // Thêm nút back
                 const backBtn = document.createElement("div");
                 backBtn.className = "flex flex-col items-center justify-center p-2 cursor-pointer rounded hover:bg-white/5";
-                backBtn.innerHTML = `<i data-lucide="arrow-left" class="w-8 h-8 text-yellow-400"></i><span class="text-[9px] text-gray-300 mt-1">Trở về</span>`;
+                backBtn.innerHTML = `<i data-lucide="arrow-left" class="w-8 h-8 text-yellow-400"></i><span class="text-[9px] text-gray-300 mt-1 font-bold">Trở về</span>`;
                 backBtn.onclick = () => { currentDir = "root"; renderExplorer(); };
                 fileViewer.appendChild(backBtn);
 
